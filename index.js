@@ -74,6 +74,6 @@ walk(walkPath, async function(path, stat){
     // todo: filter here to convert mkdoc flavor stuff
 
     fs.writeFileSync(__dirname + `/out/docs${relPath}`,
-        `---\n${YAML.stringify(frontMatters)}---\n\n${bef}`
+        `---\n${YAML.stringify(frontMatters)}\n---\n\n${bef}`
     );
 });
