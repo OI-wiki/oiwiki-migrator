@@ -57,19 +57,29 @@ const mkdocsTitles = (() => {
 
 console.log(":: Walking documents...");
 walk(walkPath, async function(path, stat){
-    if(!path.endsWith('.md')) return;
-
+    
     const relPath = path.replace(walkPath, '');
+    const relDir = relPath.split('/').slice(0,-1).join('/');
+    
+    if(stat.isDirectory()){
+        fs.mkdirSync(__dirname + `/out/docs${relPath}`, { recursive: true });
+        return;
+    }
+
+    if(!path.endsWith('.md')) {
+        //copy possible resources as-is
+        fs.copyFileSync(path,__dirname + `/out/docs${relPath}`);
+        return;
+    }
+    
     const frontMatters = {
         title: mkdocsTitles[relPath],
         tags: getTemporaryTags(relPath),
         author: (await getAuthorsList(relPath)).join(', ')
     };
 
-    const relDir = relPath.split('/').slice(0,-1).join('/');
-
     console.log(frontMatters);
-    fs.mkdirSync(__dirname + `/out/docs${relDir}`, { recursive: true});
+    fs.mkdirSync(__dirname + `/out/docs${relDir}`, { recursive: true });
     const bef = fs.readFileSync(path).toString();
     // todo: filter here to convert mkdoc flavor stuff
 
