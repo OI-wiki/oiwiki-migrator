@@ -89,11 +89,15 @@ walk(walkPath, async function(path, stat){
     };
 
     fs.mkdirSync(__dirname + `/out/docs${relDir}`, { recursive: true });
-    const bef = fs.readFileSync(path).toString();
+    let bef = fs.readFileSync(path).toString();
     // todo: filter here to convert mkdoc flavor stuff
     const originalAuthors = parseAuthorList(bef)
     frontMatters.author = mergeList(await getAuthorsList(relPath), originalAuthors).join(', ')
     console.log(frontMatters);
+    bef = bef
+        .split('\n')
+        .filter(l => !(l.startsWith('disqus:') || l.startsWith('title:') || l.startsWith('author:') || l.startsWith('pagetime:')))
+        .join('\n')
     fs.writeFileSync(__dirname + `/out/docs${relPath}`,
         `---\n${YAML.stringify(frontMatters)}\n---\n\n${bef}`
     );
