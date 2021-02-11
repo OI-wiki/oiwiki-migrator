@@ -7,23 +7,20 @@ const fs = require('fs');
 
 //clone OI-Wiki in ./raw first
 const walkPath = __dirname + '/raw/OI-Wiki/docs';
-const queryAuthors = "cd ./raw/OI-Wiki && git blame --line-porcelain ./docs/%s";
+const queryAuthors = "cd ./raw/OI-Wiki && git log --format='%an %ae' ./docs/%s";
     
 const authorBlacklist = ['24OI-bot'];
 
 async function getAuthorsList(path) {
     const authorsRaw = (await exec(queryAuthors.replace('%s',path))).stdout.trim();
     const authorsList = authorsRaw.split('\n')
-        .filter(entry => entry.startsWith('author') || entry.startsWith('author-mail'))
         .map(e => e.trim().split(' '));
     
     const ret = {};
     // author-mail and author SHOULD in pair, 
     // and there's should be even counts of items
-    for(let i = 0; i < authorsList.length; i += 2){
-        const authorName = authorsList[i].slice(1).join(' ');
-        const authorMail = authorsList[i + 1].slice(1).join(' ');
-
+    for (let i = 0; i < authorsList.length; i++){
+        const [authorName, authorMail] = authorsList[i]
         // use authorMail as master key,
         // to unique all authors
         // dirty imp
@@ -56,6 +53,20 @@ const mkdocsTitles = (() => {
 })();
 
 console.log(":: Walking documents...");
+
+function parseAuthorList(data) {
+    const originalAuthors = data.split('\n').filter(l => l.startsWith("author:"))
+    if (originalAuthors.length > 0) {
+        return originalAuthors[0].substring("author:".length).split(',').map(e => e.trim())
+    }
+    return []
+}
+
+function mergeList(l1, l2) {
+    let res = new Set([...l1, ...l2]);
+    return [...res]
+}
+
 walk(walkPath, async function(path, stat){
     
     const relPath = path.replace(walkPath, '');
@@ -75,14 +86,14 @@ walk(walkPath, async function(path, stat){
     const frontMatters = {
         title: mkdocsTitles[relPath],
         tags: getTemporaryTags(relPath),
-        author: (await getAuthorsList(relPath)).join(', ')
     };
 
-    console.log(frontMatters);
     fs.mkdirSync(__dirname + `/out/docs${relDir}`, { recursive: true });
     const bef = fs.readFileSync(path).toString();
     // todo: filter here to convert mkdoc flavor stuff
-
+    const originalAuthors = parseAuthorList(bef)
+    frontMatters.author = mergeList(await getAuthorsList(relPath), originalAuthors).join(', ')
+    console.log(frontMatters);
     fs.writeFileSync(__dirname + `/out/docs${relPath}`,
         `---\n${YAML.stringify(frontMatters)}\n---\n\n${bef}`
     );
