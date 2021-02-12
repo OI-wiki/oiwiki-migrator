@@ -17,8 +17,6 @@ async function getAuthorsList(path) {
         .map(e => e.trim().split(' '));
     
     const ret = {};
-    // author-mail and author SHOULD in pair, 
-    // and there's should be even counts of items
     for (let i = 0; i < authorsList.length; i++){
         const [authorName, authorMail] = authorsList[i]
         // use authorMail as master key,
