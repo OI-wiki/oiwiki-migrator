@@ -9,6 +9,9 @@
   "author": "Xiaodai Dai",
   "license": "MIT",
   "dependencies": {
+    "async": "^3.2.1",
+    "graphql": "^15.5.1",
+    "graphql-request": "^3.5.0",
     "walkdir": "^0.4.1",
     "yaml": "^1.8.3"
   }
