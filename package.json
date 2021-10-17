@@ -1,7 +1,7 @@
 {
   "name": "oiwiki-migrator",
-  "version": "1.0.0",
-  "description": "One-time tool for migrating oi-wiki pages",
+  "version": "2.0.0",
+  "description": "Tool for migrating oi-wiki pages",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,22 @@
   "author": "Xiaodai Dai",
   "license": "MIT",
   "dependencies": {
+    "mdast-util-to-string": "^3.1.0",
+    "remark": "^14.0.1",
+    "remark-details": "^4.0.4",
+    "remark-directive": "^2.0.0",
+    "remark-frontmatter": "^4.0.0",
+    "unified": "^10.1.0",
+    "unist-util-visit": "^4.1.0",
     "walkdir": "^0.4.1",
     "yaml": "^1.8.3"
+  },
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
   }
 }

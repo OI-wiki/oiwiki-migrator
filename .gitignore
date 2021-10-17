@@ -121,7 +121,5 @@ dist
 !.vscode/extensions.json
 *.code-workspace
 
-out/*
-raw/*
-!out/.keep
-!raw/.keep
+out/
+raw/
