@@ -5,6 +5,7 @@ import remarkDetails from 'remark-details'
 import remarkDirective from 'remark-directive'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 import YAML from 'yaml'
 import { getGitAuthors } from '../author-utils.js'
 import myDetailsToAst from './details-ast.js'
@@ -13,6 +14,7 @@ import myFrontmatter from './frontmatter.js'
 const Remark = remark()
   .use(remarkFrontmatter)
   .use(remarkGfm)
+  .use(remarkMath)
   .use(remarkDirective)
   .use(remarkDetails)
   .use(myDetailsToAst)
