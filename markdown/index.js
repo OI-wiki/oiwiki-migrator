@@ -2,16 +2,18 @@ import fs from 'fs/promises'
 import path from 'path'
 import { remark } from 'remark'
 import remarkDirective from 'remark-directive'
-// import remarkDetails from 'remark-details'
+import remarkDetails from 'remark-details'
 import remarkFrontmatter from 'remark-frontmatter'
 import YAML from 'yaml'
 import myFrontmatter from './frontmatter.js'
+import myDetailsToAst from './details-ast.js'
 import { getGitAuthors } from '../author-utils.js'
 
 const Remark = remark()
   .use(remarkFrontmatter)
   .use(remarkDirective)
-  // .use(remarkDetails)
+  .use(remarkDetails)
+  .use(myDetailsToAst)
   .use(myFrontmatter)
 
 async function getMkdocTitles (env) {
