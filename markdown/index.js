@@ -8,9 +8,10 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import YAML from 'yaml'
 import { getGitAuthors } from '../author-utils.js'
-import myDetailsToAst from './details-ast.js'
-import myFrontmatter from './frontmatter.js'
 import myCodesFold from './codes.js'
+import myDetailsToAst from './details-ast.js'
+import myDetailsSummary from './details.js'
+import myFrontmatter from './frontmatter.js'
 
 const Remark = remark()
   .use(remarkFrontmatter)
@@ -19,6 +20,7 @@ const Remark = remark()
   .use(remarkDirective)
   .use(remarkDetails)
   .use(myCodesFold)
+  .use(myDetailsSummary)
   .use(myDetailsToAst)
   .use(myFrontmatter)
 
