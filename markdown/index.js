@@ -55,7 +55,7 @@ export default async function (env) {
       .data('ow-title', titles[`/${target.relPath}`])
       .data('ow-tags', getTemporaryTags(`/${target.relPath}`))
       .data('ow-authors', authors)
-      .data('ow-relpath', target.relPath)
+      .data('ow-target', { ...target })
       .freeze()
     const f = await allRemark.process(doc)
 
