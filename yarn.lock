@@ -88,10 +88,29 @@
   resolved "https://registry.yarnpkg.com/@types/ms/-/ms-0.7.31.tgz#31b7ca6407128a3d2bbc27fe2d21b345397f6197"
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
+"@types/node@*":
+  version "17.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.8.tgz#50d680c8a8a78fe30abe6906453b21ad8ab0ad7b"
+  integrity sha512-YofkM6fGv4gDJq78g4j0mMuGMkZVxZDgtU0JRdx6FgiJDG+0fY0GKVolOV8WqVmEhLCXkQRjwDdKyPxJp/uucg==
+
+"@types/sax@^1.0.0":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@types/sax/-/sax-1.2.4.tgz#8221affa7f4f3cb21abd22f244cfabfa63e6a69e"
+  integrity sha512-pSAff4IAxJjfAXUG6tFkO7dsSbTmf8CtUpfhhZ5VhkRpC4628tJhh3+V6H1E+/Gs9piSzYKT5yzHO5M4GG9jkw==
+  dependencies:
+    "@types/node" "*"
+
 "@types/unist@*", "@types/unist@^2.0.0":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
+
+"@types/xast@^1.0.0":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/xast/-/xast-1.0.2.tgz#1eeb4b3c6e00e9f8bd848765ce1a22d183abe37f"
+  integrity sha512-eIuX49CmWaXTh0hDEQTFH5MbTV+NPm0FM5gB36nDcr9x8n75t9o7wy2guS1lakkQxtUwfVDYiokqvHk3x0CC4Q==
+  dependencies:
+    "@types/unist" "*"
 
 acorn-jsx@^5.3.1:
   version "5.3.2"
@@ -1796,6 +1815,11 @@ sade@^1.7.3:
   dependencies:
     mri "^1.1.0"
 
+sax@^1.0.0:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
+  integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
+
 semver@^6.1.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
@@ -2094,6 +2118,26 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
+
+xast-util-from-xml@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/xast-util-from-xml/-/xast-util-from-xml-2.0.1.tgz#be244ddfbea560f0785c4267f068a1171b98be47"
+  integrity sha512-1tCNX00mnFH1URM9A2B8s6oZO3ZaNDFk4NY+8n71BbhtwSYErjuzPbdkvYUHBaVu47ygvucXkzOLPJ2TUQDbgA==
+  dependencies:
+    "@types/sax" "^1.0.0"
+    "@types/unist" "^2.0.0"
+    "@types/xast" "^1.0.0"
+    sax "^1.0.0"
+    vfile-message "^3.0.0"
+
+xast-util-to-xml@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/xast-util-to-xml/-/xast-util-to-xml-3.0.0.tgz#06896db0cce30b399696daa06b0e9a8fe439e2c3"
+  integrity sha512-lhyPSdXoHkr92kkMxuwfd6UVfEXUuAYIzSzdJPmlX//BVRTaXFQLWA7iOxMKLg2+mkcCsKl4GtpXCMIxNHJb3Q==
+  dependencies:
+    "@types/xast" "^1.0.0"
+    ccount "^2.0.0"
+    stringify-entities "^4.0.0"
 
 yallist@^4.0.0:
   version "4.0.0"

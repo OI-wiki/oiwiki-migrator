@@ -19,6 +19,8 @@
     "unified": "^10.1.0",
     "unist-util-visit": "^4.1.0",
     "walkdir": "^0.4.1",
+    "xast-util-from-xml": "^2.0.1",
+    "xast-util-to-xml": "^3.0.0",
     "yaml": "^1.8.3"
   },
   "type": "module",

@@ -2,6 +2,7 @@ import walk from 'walkdir'
 import fs from 'fs/promises'
 import fsSync from 'fs'
 import markdownAttacher from './markdown/index.js'
+import svgAttacher from './svg/index.js'
 import path from 'path'
 
 async function CopyAsIsProcessor ({ outDocDir, relPath, filePath }) {
@@ -20,6 +21,7 @@ async function convertAll () {
   async function registerProcessors (env) {
     processors.default = CopyAsIsProcessor
     processors['.md'] = await markdownAttacher(env);
+    processors['.svg'] = await svgAttacher(env);
     ['.webmanifest', '.ico', '.css', '.js', '.txt'].forEach(e => {
       processors[e] = SkipProcessor
     })
